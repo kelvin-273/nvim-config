@@ -25,9 +25,10 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'drmingdrmer/vim-syntax-markdown'
 Plug 'scrooloose/nerdcommenter'
-"Plugin 'scrooloose/syntastic'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'scrooloose/syntastic'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plug 'vim-airline/vim-airline'
+Plug 'junegunn/goyo.vim'
 call plug#end()
 
 " -- My Setup --
@@ -51,4 +52,4 @@ set wrap
 set linebreak
 set nolist
 set spell
-set cursorline
+"set cursorline
