@@ -44,6 +44,20 @@ function! MakeTransparent()
   highlight NonText ctermbg=none
 endfunction
 
+function! Markdown()
+  inoremap $ $$<Left>
+  inoremap \todo <!--TODO: --><Left><Left><Left>
+  inoremap \cc <!----><Left><Left><Left>
+  inoremap \cb <!----><Left><Left><Left><Up>
+  inoremap \cs <----><Left><Left><Left>
+  noremap j gj
+  noremap k gk
+endfunction
+
+function! Haskell()
+  set nospell
+endfunction
+
 set tabstop=2
 set shiftwidth=2
 set expandtab
