@@ -58,6 +58,7 @@ function! Haskell()
   set nospell
 endfunction
 
+inoremap jj <Esc>
 set tabstop=2
 set shiftwidth=2
 set expandtab
