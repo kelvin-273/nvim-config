@@ -1,25 +1,3 @@
-" " -- Vundle Setup --
-"
-" set nocompatible              " be iMproved, required
-" filetype off                  " required
-"
-" " set the runtime path to include Vundle and initialize
-" set rtp+=~/.config/nvim/bundle/Vundle.vim
-" call vundle#begin()
-"
-" " let Vundle manage Vundle, required
-" Plugin 'VundleVim/Vundle.vim'
-"
-" Plugin 'drmingdrmer/vim-syntax-markdown'
-" Plugin 'scrooloose/nerdcommenter'
-" "Plugin 'scrooloose/syntastic'
-" Plugin 'Valloric/YouCompleteMe'
-" Plugin 'vim-airline/vim-airline'
-"
-" " All of your Plugins must be added before the following line
-" call vundle#end()
-" filetype plugin indent on
-
 " -- Vim-Plug Setup
 
 call plug#begin('~/.local/share/nvim/plugged')
@@ -35,29 +13,6 @@ call plug#end()
 
 colorscheme molokai
 
-function! MakeTransparent()
-  " Activate Transparency
-  " do it with lighter textual colourscheme, like vibranink
-  colorscheme vibrantink
-  syntax on
-  highlight Normal ctermbg=none
-  highlight NonText ctermbg=none
-endfunction
-
-function! Markdown()
-  inoremap $ $$<Left>
-  inoremap \todo <!--TODO: --><Left><Left><Left>
-  inoremap \cc <!----><Left><Left><Left>
-  inoremap \cb <!----><Left><Left><Left><Up>
-  inoremap \cs <----><Left><Left><Left>
-  noremap j gj
-  noremap k gk
-endfunction
-
-function! Haskell()
-  set nospell
-endfunction
-
 inoremap jj <Esc>
 set tabstop=2
 set shiftwidth=2
@@ -68,3 +23,25 @@ set linebreak
 set nolist
 set spell
 "set cursorline
+
+function! MakeTransparent()
+  " Activate Transparency
+  " do it with lighter textual colourscheme, like vibranink
+  colorscheme vibrantink
+  syntax on
+  highlight Normal ctermbg=none
+  highlight NonText ctermbg=none
+endfunction
+
+" -- Markdown setup --
+autocmd FileType markdown inoremap $ $$<Left>
+autocmd FileType markdown inoremap \todo <!--TODO: --><Left><Left><Left>
+autocmd FileType markdown inoremap \cc <!----><Left><Left><Left>
+autocmd FileType markdown inoremap \cb <!----><Left><Left><Left><Up>
+autocmd FileType markdown inoremap \cs <----><Left><Left><Left>
+autocmd FileType markdown inoremap \c\ <Right><Right><Right>
+autocmd FileType markdown noremap j gj
+autocmd FileType markdown noremap k gk
+
+" -- Haskell setup --
+autocmd FileType haskell set nospell
