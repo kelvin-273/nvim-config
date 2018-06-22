@@ -7,6 +7,7 @@ Plug 'scrooloose/syntastic'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plug 'vim-airline/vim-airline'
 Plug 'junegunn/goyo.vim'
+Plug 'tpope/vim-surround'
 call plug#end()
 
 " -- My Setup --
@@ -45,3 +46,7 @@ autocmd FileType markdown noremap k gk
 
 " -- Haskell setup --
 autocmd FileType haskell set nospell
+autocmd FileType haskell inoremap \todo -- TODO: 
+
+" -- Python setup --
+autocmd FileType python inoremap \todo # TODO: 
