@@ -15,6 +15,10 @@ call plug#end()
 colorscheme molokai
 
 inoremap jj <Esc>
+map <C-H> <C-W>h
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+map <C-L> <C-W>l
 set tabstop=2
 set shiftwidth=2
 set expandtab
