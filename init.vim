@@ -53,4 +53,9 @@ autocmd FileType haskell set nospell
 autocmd FileType haskell inoremap \todo -- TODO: 
 
 " -- Python setup --
+autocmd FileType python set foldmethod=indent
 autocmd FileType python inoremap \todo # TODO: 
+
+" -- C & C++ setup --
+autocmd FileType c set foldmethod=syntax
+autocmd FileType c++ set foldmethod=syntax
