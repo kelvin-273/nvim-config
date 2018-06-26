@@ -55,6 +55,7 @@ autocmd FileType haskell inoremap \todo -- TODO:
 " -- Python setup --
 autocmd FileType python set foldmethod=indent
 autocmd FileType python inoremap \todo # TODO: 
+autocmd FileType python inoremap \cb """"""<Left><Left><Left><Up>
 
 " -- C & C++ setup --
 autocmd FileType c set foldmethod=syntax
