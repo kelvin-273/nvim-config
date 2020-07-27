@@ -3,25 +3,35 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'drmingdrmer/vim-syntax-markdown'
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/syntastic'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+"Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'airblade/vim-rooter'
 Plug 'vim-airline/vim-airline'
+"Plug 'itchyny/lightline.vim'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-surround'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'quramy/tsuquyomi'
+Plug 'takac/vim-hardtime'
+Plug 'junegunn/fzf.vim'
+Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 call plug#end()
 
 " -- My Setup --
 
 colorscheme molokai
+"colorscheme Monokai
+"colorscheme summerfruits256
 
 " inoremap <Space><Tab> <Esc>/<++><Enter>:noh<Enter>"_c4l
 " map <Space><Tab> <Esc>/<++><Enter>:noh<Enter>"_c4l
 
-inoremap jj <Esc>
+"inoremap jj <Esc>
 map <C-H> <C-W>h
 map <C-J> <C-W>j
 map <C-K> <C-W>k
@@ -29,13 +39,31 @@ map <C-L> <C-W>l
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set relativenumber
 set number
 set wrap
 set linebreak
 set nolist
 set spell
 set mouse=a
+set nohlsearch
+set ignorecase
+set smartcase
 "set cursorline
+nmap <C-p> :FZF<CR>
+noremap <silent> <C-g> :GFiles<CR>
+"noremap <silent> <C-o> :Buffers<CR>
+noremap <C-f> :Rg!
+"nmap <Leader>gd :YcmCompleter GoTo<CR>
+
+"let g:lightline = {
+      "\ 'component': {
+      "\   'filename': '%f',
+      "\ }
+      "\ }
+
+source $HOME/.config/nvim/plugin-config/coc.vim
+
 
 function! MakeTransparent()
   " Activate Transparency
@@ -58,13 +86,13 @@ function! UnComment()
   %s/<!--/<--/g
 endfunction
 
-command RC tabedit ~/.config/nvim/init.vim
+command! RC edit ~/.config/nvim/init.vim
 
 " -- Markdown setup --
-autocmd FileType markdown inoremap $ $$<Left>
-autocmd FileType markdown inoremap ( ()<Left>
-autocmd FileType markdown inoremap [ []<Left>
-autocmd FileType markdown inoremap { {}<Left>
+"autocmd FileType markdown inoremap $ $$<Left>
+"autocmd FileType markdown inoremap ( ()<Left>
+"autocmd FileType markdown inoremap [ []<Left>
+"autocmd FileType markdown inoremap { {}<Left>
 " comments
 autocmd FileType markdown inoremap \todo <!--TODO: --><Left><Left><Left>
 autocmd FileType markdown inoremap \cc <!----><Left><Left><Left>
@@ -75,7 +103,8 @@ autocmd FileType markdown inoremap \c\ <Right><Right><Right>
 autocmd FileType markdown noremap j gj
 autocmd FileType markdown noremap k gk
 " latex
-autocmd FileType markdown inoremap \tb \pmb{}<Left>
+"autocmd FileType markdown inoremap \tb \pmb{}<Left>
+autocmd FileType markdown inoremap \tb \textb{}<Left>
 autocmd FileType markdown inoremap \mbb \mathbb{}<Left>
 autocmd FileType markdown inoremap \mc \mathcal{}<Left>
 autocmd FileType markdown inoremap \l( \left(  \right)<Left><Left><Left><Left><Left><Left><Left><Left>
@@ -98,6 +127,19 @@ autocmd FileType markdown inoremap \dt Decision Tree
 autocmd FileType markdown inoremap \bb Branch and Bound
 autocmd FileType markdown inoremap \ig Information Gain
 autocmd FileType markdown inoremap \mip Mixed-Integer Program
+autocmd FileType text inoremap \lpp longest proper prefix that matches the suffix of pattern where the character that gets moved to the mismatched position is the mismatched character.
+autocmd FileType text noremap "" "+yip
+
+function MarkdownLevel()
+  let h = matchstr(getline(v:lnum), '^#\+')
+  if empty(h)
+    return "="
+  else
+    return ">" . len(h)
+  endif
+endfunction
+autocmd FileType markdown setlocal foldexpr=MarkdownLevel()
+autocmd FileType markdown setlocal foldmethod=expr
 
 " -- Haskell setup --
 autocmd FileType haskell set nospell
@@ -117,6 +159,7 @@ let g:cabal_indent_section = 2
 
 " -- Python setup --
 autocmd FileType python set foldmethod=indent
+autocmd FileType python set tabstop=4
 autocmd FileType python inoremap \todo # TODO: 
 autocmd FileType python inoremap \c\ <Right><Right><Right>
 autocmd FileType python inoremap \cb """"""<Left><Left><Left><Up>
@@ -130,3 +173,6 @@ autocmd FileType cpp set tabstop=3
 
 " -- Typescript --
 autocmd FileType typescript set foldmethod=indent
+
+" -- The Heist --
+autocmd BufReadPre,FileReadPre  *.pi  set ft=python
