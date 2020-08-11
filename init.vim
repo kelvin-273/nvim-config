@@ -20,6 +20,7 @@ Plug 'quramy/tsuquyomi'
 Plug 'takac/vim-hardtime'
 Plug 'junegunn/fzf.vim'
 Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
+Plug 'fatih/vim-go'
 call plug#end()
 
 " -- My Setup --
@@ -173,6 +174,9 @@ autocmd FileType cpp set tabstop=3
 
 " -- Typescript --
 autocmd FileType typescript set foldmethod=indent
+
+" -- Go --
+leg g:go_def_mapping_enabled = 0
 
 " -- The Heist --
 autocmd BufReadPre,FileReadPre  *.pi  set ft=python
