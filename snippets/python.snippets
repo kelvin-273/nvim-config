@@ -1,0 +1,49 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+snippet _i "Read an int from stdin"
+int(input())
+endsnippet
+
+snippet _ls "Read a list of strings from stdin"
+input().split()
+endsnippet
+
+snippet _li "Read a list of ints from stdin"
+[int(x) for x in input().split()]
+endsnippet
+
+snippet _ti "Read a tuple of ints from stdin"
+(int(x) for x in input().split())
+endsnippet
+
+snippet _def "shoddy functions" b
+def ${1:function}(${2:args}):
+	return $1($2)
+endsnippet
+
+snippet lc "list comprehension"
+[${1:value} for ${2:var} in ${3:iterator}]
+endsnippet

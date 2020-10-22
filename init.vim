@@ -1,7 +1,7 @@
 " -- Vim-Plug Setup
 
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'drmingdrmer/vim-syntax-markdown'
+"Plug 'drmingdrmer/vim-syntax-markdown'
 Plug 'scrooloose/nerdcommenter'
 "Plug 'scrooloose/syntastic'
 Plug 'w0rp/ale'
@@ -10,17 +10,23 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'airblade/vim-rooter'
 Plug 'vim-airline/vim-airline'
 "Plug 'itchyny/lightline.vim'
-Plug 'ludovicchabant/vim-gutentags'
+"Plug 'ludovicchabant/vim-gutentags'
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
-Plug 'neovimhaskell/haskell-vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'quramy/tsuquyomi'
-Plug 'takac/vim-hardtime'
+"Plug 'neovimhaskell/haskell-vim'
+"Plug 'leafgarland/typescript-vim'
+"Plug 'quramy/tsuquyomi'
+"Plug 'takac/vim-hardtime'
 Plug 'junegunn/fzf.vim'
-Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
-Plug 'fatih/vim-go'
+"Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
+"Plug 'fatih/vim-go'
+Plug 'raimondi/delimitMate'
+"Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'sheerun/vim-polyglot'
+Plug 'rust-lang/rust.vim'
+Plug 'vimwiki/vimwiki'
+Plug 'vale1410/vim-minizinc'
 call plug#end()
 
 " -- My Setup --
@@ -32,7 +38,6 @@ colorscheme molokai
 " inoremap <Space><Tab> <Esc>/<++><Enter>:noh<Enter>"_c4l
 " map <Space><Tab> <Esc>/<++><Enter>:noh<Enter>"_c4l
 
-"inoremap jj <Esc>
 map <C-H> <C-W>h
 map <C-J> <C-W>j
 map <C-K> <C-W>k
@@ -50,9 +55,18 @@ set mouse=a
 set nohlsearch
 set ignorecase
 set smartcase
+set termguicolors
 "set cursorline
+set nocompatible
+filetype plugin on
+syntax on
+
+let g:python3_host_prog = '/home/kelvin/anaconda3/bin/python3'
+
 nmap <C-p> :FZF<CR>
 noremap <silent> <C-g> :GFiles<CR>
+noremap <silent> <C-t> :Tags<CR>
+noremap <silent> <C-c> :Colors<CR>
 "noremap <silent> <C-o> :Buffers<CR>
 noremap <C-f> :Rg!
 "nmap <Leader>gd :YcmCompleter GoTo<CR>
@@ -62,8 +76,14 @@ noremap <C-f> :Rg!
       "\   'filename': '%f',
       "\ }
       "\ }
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit',
+  \ 'ctrl-o': ':r !echo'}
 
 source $HOME/.config/nvim/plugin-config/coc.vim
+source $HOME/.config/nvim/plugin-config/coc-snippets.vim
 
 
 function! MakeTransparent()
@@ -87,13 +107,9 @@ function! UnComment()
   %s/<!--/<--/g
 endfunction
 
-command! RC edit ~/.config/nvim/init.vim
+command! RC tabedit ~/.config/nvim/init.vim
 
 " -- Markdown setup --
-"autocmd FileType markdown inoremap $ $$<Left>
-"autocmd FileType markdown inoremap ( ()<Left>
-"autocmd FileType markdown inoremap [ []<Left>
-"autocmd FileType markdown inoremap { {}<Left>
 " comments
 autocmd FileType markdown inoremap \todo <!--TODO: --><Left><Left><Left>
 autocmd FileType markdown inoremap \cc <!----><Left><Left><Left>
@@ -169,14 +185,21 @@ autocmd FileType python inoremap \cc """"""<Left><Left><Left>
 " -- C & C++ setup --
 autocmd FileType c set foldmethod=syntax
 autocmd FileType cpp set foldmethod=syntax
-autocmd FileType c set tabstop=3
-autocmd FileType cpp set tabstop=3
+autocmd FileType c set tabstop=4
+autocmd FileType cpp set tabstop=4
 
 " -- Typescript --
 autocmd FileType typescript set foldmethod=indent
 
 " -- Go --
-leg g:go_def_mapping_enabled = 0
+let g:go_def_mapping_enabled = 0
+
+" -- Rust --
+autocmd FileType rust set foldmethod=syntax
 
 " -- The Heist --
-autocmd BufReadPre,FileReadPre  *.pi  set ft=python
+autocmd BufReadPre,FileReadPre  *.pi  set syntax=python
+autocmd BufReadPre,FileReadPre  *.pi  set ft=pithon
+
+" -- VimWiki --
+
