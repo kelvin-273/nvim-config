@@ -27,6 +27,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'rust-lang/rust.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'vale1410/vim-minizinc'
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 " -- My Setup --
@@ -38,10 +39,6 @@ colorscheme molokai
 " inoremap <Space><Tab> <Esc>/<++><Enter>:noh<Enter>"_c4l
 " map <Space><Tab> <Esc>/<++><Enter>:noh<Enter>"_c4l
 
-map <C-H> <C-W>h
-map <C-J> <C-W>j
-map <C-K> <C-W>k
-map <C-L> <C-W>l
 set tabstop=2
 set shiftwidth=2
 set expandtab
@@ -56,35 +53,55 @@ set nohlsearch
 set ignorecase
 set smartcase
 set termguicolors
-"set cursorline
 set nocompatible
 filetype plugin on
 syntax on
 
 let g:python3_host_prog = '/home/kelvin/anaconda3/bin/python3'
 
-nmap <C-p> :FZF<CR>
+map <C-H> <C-W>h
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+map <C-L> <C-W>l
+let delimitMate_expand_space = 1
+let delimitMate_expand_inside_quotes = 1
+let delimitMate_expand_cr = 2
+let delimitMate_jump_expansion = 1
+noremap <silent> <C-p> :FZF<CR>
 noremap <silent> <C-g> :GFiles<CR>
 noremap <silent> <C-t> :Tags<CR>
 noremap <silent> <C-c> :Colors<CR>
 "noremap <silent> <C-o> :Buffers<CR>
 noremap <C-f> :Rg!
-"nmap <Leader>gd :YcmCompleter GoTo<CR>
+""inoremap <expr> <C-x><C-l> fzf#vim#complete#line()
+imap <c-x><c-l> <plug>(fzf-complete-line)
+""imap <c-x><c-l> <plug>(fzf-complete-buffer-line)
+""nmap <Leader>gd :YcmCompleter GoTo<CR>
+nmap <silent> <Leader>wd :VimwikiMakeDiaryNote<CR>
 
 "let g:lightline = {
       "\ 'component': {
       "\   'filename': '%f',
       "\ }
       "\ }
+
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit',
   \ 'ctrl-o': ':r !echo'}
 
+" TMUX
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+" Disable tmux navigator when zooming the Vim pane
+let g:tmux_navigator_disable_when_zoomed = 1
+
 source $HOME/.config/nvim/plugin-config/coc.vim
 source $HOME/.config/nvim/plugin-config/coc-snippets.vim
-
 
 function! MakeTransparent()
   " Activate Transparency
