@@ -5,7 +5,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'scrooloose/nerdcommenter'
 "Plug 'scrooloose/syntastic'
 Plug 'w0rp/ale'
-"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'airblade/vim-rooter'
 Plug 'vim-airline/vim-airline'
@@ -28,12 +27,13 @@ Plug 'rust-lang/rust.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'vale1410/vim-minizinc'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 " -- My Setup --
 
 colorscheme molokai
-"colorscheme Monokai
+"colorscheme Benokai
 "colorscheme summerfruits256
 
 " inoremap <Space><Tab> <Esc>/<++><Enter>:noh<Enter>"_c4l
@@ -54,15 +54,24 @@ set ignorecase
 set smartcase
 set termguicolors
 set nocompatible
+set exrc
+set secure
 filetype plugin on
 syntax on
 
 let g:python3_host_prog = '/home/kelvin/anaconda3/bin/python3'
 
+source $HOME/.config/nvim/plugin-config/coc.vim
+source $HOME/.config/nvim/plugin-config/coc-snippets.vim
+let g:ale_disable_lsp = 1
+let g:ale_linters = {'haskell': ['cabal_ghc', 'ghc-mod', 'hdevtools', 'hie', 'hlint', 'stack_build', 'stack_ghc']}
+
+
 map <C-H> <C-W>h
 map <C-J> <C-W>j
 map <C-K> <C-W>k
 map <C-L> <C-W>l
+noremap Y y$
 let delimitMate_expand_space = 1
 let delimitMate_expand_inside_quotes = 1
 let delimitMate_expand_cr = 2
@@ -78,6 +87,8 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 ""imap <c-x><c-l> <plug>(fzf-complete-buffer-line)
 ""nmap <Leader>gd :YcmCompleter GoTo<CR>
 nmap <silent> <Leader>wd :VimwikiMakeDiaryNote<CR>
+nmap <silent> <Leader>g :Git<CR>
+nmap <silent> <Leader>f :FloatermNew ranger<CR>
 
 "let g:lightline = {
       "\ 'component': {
@@ -99,9 +110,6 @@ nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
-
-source $HOME/.config/nvim/plugin-config/coc.vim
-source $HOME/.config/nvim/plugin-config/coc-snippets.vim
 
 function! MakeTransparent()
   " Activate Transparency
