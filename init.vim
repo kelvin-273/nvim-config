@@ -39,6 +39,7 @@ colorscheme molokai
 " inoremap <Space><Tab> <Esc>/<++><Enter>:noh<Enter>"_c4l
 " map <Space><Tab> <Esc>/<++><Enter>:noh<Enter>"_c4l
 
+
 set tabstop=2
 set shiftwidth=2
 set expandtab
@@ -56,6 +57,7 @@ set termguicolors
 set nocompatible
 set exrc
 set secure
+set encoding=utf-8
 filetype plugin on
 syntax on
 
