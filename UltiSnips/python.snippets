@@ -39,9 +39,9 @@ snippet _ti "Read a tuple of ints from stdin"
 (int(x) for x in input().split())
 endsnippet
 
-snippet _def "shoddy functions" b
+snippet def "function definition" b
 def ${1:function}(${2:args}):
-	return $1($2)
+	${3:pass}
 endsnippet
 
 snippet lc "list comprehension"

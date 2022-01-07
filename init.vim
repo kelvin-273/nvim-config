@@ -4,8 +4,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 "Plug 'drmingdrmer/vim-syntax-markdown'
 Plug 'scrooloose/nerdcommenter'
 "Plug 'scrooloose/syntastic'
-Plug 'w0rp/ale'
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+"Plug 'w0rp/ale'
+"Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'airblade/vim-rooter'
 " -- Status lines
 Plug 'vim-airline/vim-airline'
@@ -22,13 +22,25 @@ Plug 'junegunn/fzf.vim'
 "Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 "Plug 'fatih/vim-go'
 Plug 'raimondi/delimitMate'
-"Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'sheerun/vim-polyglot'
 Plug 'rust-lang/rust.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'vale1410/vim-minizinc'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'voldikss/vim-floaterm'
+" -- lsp + completion setup
+Plug 'neovim/nvim-lspconfig'
+Plug 'onsails/lspkind-nvim'
+"Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+" -- treesitter
+"Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 call plug#end()
 
 " -- My Setup --
@@ -65,11 +77,33 @@ syntax on
 
 let g:python3_host_prog = '/home/kelvin/anaconda3/bin/python3'
 
-source $HOME/.config/nvim/plugin-config/coc.vim
-source $HOME/.config/nvim/plugin-config/coc-snippets.vim
+"source $HOME/.config/nvim/plugin-config/coc.vim
+"source $HOME/.config/nvim/plugin-config/coc-snippets.vim
 let g:ale_disable_lsp = 1
 let g:ale_linters = {'haskell': ['cabal_ghc', 'ghc-mod', 'hdevtools', 'hie', 'hlint', 'stack_build', 'stack_ghc']}
 
+source $HOME/.config/nvim/lua/lsp-config.lua
+" Code navigation shortcuts
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-s-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <leader>rn    <cmd>lua vim.lsp.buf.rename()<CR>
+" autocomplete options
+set completeopt=menuone,noinsert,noselect
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+let g:completion_enable_snippet = 'UltiSnips'
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+"let g:UltiSnipsSnippetDirectories = ['UltiSnips']
+
+source $HOME/.config/nvim/lua/nvim-cmp.lua
 
 map <C-H> <C-W>h
 map <C-J> <C-W>j

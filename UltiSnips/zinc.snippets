@@ -1,0 +1,29 @@
+snippet cons "constraint"
+constraint ${1:true};
+endsnippet
+
+snippet fa "forall"
+forall (${1:x} in ${2:xs}) (
+	${3:true}
+)
+endsnippet
+
+snippet lc "list comprehension"
+[${1:y} | ${2:x} in ${3:xs}]
+endsnippet
+
+snippet lcw "list comprehension with filter"
+[${1:y} | ${2:x} in ${3:xs} where ${4:true}]
+endsnippet
+
+snippet sum "sum"
+sum (${1:x} in ${2:xs}) (${3:y})
+endsnippet
+
+snippet inc "include"
+include "${1:globals.mzn}";
+endsnippet
+
+snippet enum "enum"
+enum ${1:X} = {${2}};
+endsnippet
