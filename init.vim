@@ -40,6 +40,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 " -- treesitter
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 "Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 call plug#end()
 
@@ -104,6 +105,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 "let g:UltiSnipsSnippetDirectories = ['UltiSnips']
 
 source $HOME/.config/nvim/lua/nvim-cmp.lua
+source $HOME/.config/nvim/lua/treesitter.lua
 
 map <C-H> <C-W>h
 map <C-J> <C-W>j
