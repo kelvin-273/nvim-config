@@ -16,8 +16,8 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    --{ name = 'nvim_lua' },
-     { name = 'ultisnips' }, -- For ultisnips users.
+    { name = 'nvim_lua' },
+    { name = 'ultisnips' }, -- For ultisnips users.
      --{ name = 'vim-snippets' }, -- For ultisnips users.
     { name = 'buffer' },
   }),
