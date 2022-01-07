@@ -7,6 +7,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'airblade/vim-rooter'
+" -- Status lines
 Plug 'vim-airline/vim-airline'
 "Plug 'itchyny/lightline.vim'
 "Plug 'ludovicchabant/vim-gutentags'
@@ -32,6 +33,7 @@ call plug#end()
 
 " -- My Setup --
 
+"colorscheme dracula
 colorscheme molokai
 "colorscheme Benokai
 "colorscheme summerfruits256
@@ -48,10 +50,12 @@ set wrap
 set linebreak
 set nolist
 set spell
+set spellsuggest=best,10
 set mouse=a
 set nohlsearch
 set ignorecase
 set smartcase
+set cursorline
 set termguicolors
 set nocompatible
 set exrc
@@ -133,6 +137,8 @@ function! UnComment()
 endfunction
 
 command! RC tabedit ~/.config/nvim/init.vim
+
+"g:languagetool_jar = '/usr/bin/languagetool'
 
 " -- Markdown setup --
 " comments
@@ -227,4 +233,4 @@ autocmd BufReadPre,FileReadPre  *.pi  set syntax=python
 autocmd BufReadPre,FileReadPre  *.pi  set ft=pithon
 
 " -- VimWiki --
-
+let g:vimwiki_list = [{}, {'name': 'phd', 'path': '~/Documents/Research/PhD/notes', 'path_html': '~/Documents/Research/PhD/notes/html'}]
