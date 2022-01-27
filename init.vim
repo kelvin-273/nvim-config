@@ -1,9 +1,7 @@
 " -- Vim-Plug Setup
 
 call plug#begin('~/.local/share/nvim/plugged')
-"Plug 'drmingdrmer/vim-syntax-markdown'
 Plug 'scrooloose/nerdcommenter'
-"Plug 'scrooloose/syntastic'
 "Plug 'w0rp/ale'
 "Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'airblade/vim-rooter'
@@ -14,34 +12,34 @@ Plug 'vim-airline/vim-airline'
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
+" -- language specific
 "Plug 'neovimhaskell/haskell-vim'
 "Plug 'leafgarland/typescript-vim'
 "Plug 'quramy/tsuquyomi'
-"Plug 'takac/vim-hardtime'
-Plug 'junegunn/fzf.vim'
-"Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
+Plug 'vale1410/vim-minizinc'
+Plug 'idris-hackers/idris-vim'
+Plug 'rust-lang/rust.vim'
 "Plug 'fatih/vim-go'
+Plug 'takac/vim-hardtime'
+"Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
+Plug 'junegunn/fzf.vim'
 Plug 'raimondi/delimitMate'
 Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'sheerun/vim-polyglot'
-Plug 'rust-lang/rust.vim'
 Plug 'vimwiki/vimwiki'
-Plug 'vale1410/vim-minizinc'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'voldikss/vim-floaterm'
 " -- lsp + completion setup
 Plug 'neovim/nvim-lspconfig'
 Plug 'onsails/lspkind-nvim'
-"Plug 'nvim-lua/completion-nvim'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
-" -- treesitter
-Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 "Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+" -- treesitter
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-treesitter/playground'
 " -- telescope
@@ -76,6 +74,7 @@ set ignorecase
 set smartcase
 set cursorline
 set termguicolors
+set encoding=UTF-8
 set nocompatible
 set exrc
 set secure
@@ -124,7 +123,7 @@ let delimitMate_expand_cr = 2
 let delimitMate_jump_expansion = 1
 noremap <silent> <C-p> :FZF<CR>
 noremap <silent> <C-g> :GFiles<CR>
-noremap <silent> <C-t> :Tags<CR>
+"noremap <silent> <C-t> :Tags<CR>
 noremap <silent> <C-c> :Colors<CR>
 "noremap <silent> <C-o> :Buffers<CR>
 noremap <C-f> :Rg!
@@ -135,6 +134,7 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 nmap <silent> <Leader>wd :VimwikiMakeDiaryNote<CR>
 nmap <silent> <Leader>g :Git<CR>
 nmap <silent> <Leader>f :FloatermNew ranger<CR>
+nmap <silent> <C-t> :Telescope<CR>
 
 "let g:lightline = {
       "\ 'component': {
