@@ -7,6 +7,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-rooter'
 " -- Status lines
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 "Plug 'itchyny/lightline.vim'
 "Plug 'ludovicchabant/vim-gutentags'
 Plug 'junegunn/goyo.vim'
@@ -19,6 +20,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vale1410/vim-minizinc'
 Plug 'idris-hackers/idris-vim'
 Plug 'rust-lang/rust.vim'
+Plug 'lervag/vimtex'
 "Plug 'fatih/vim-go'
 Plug 'takac/vim-hardtime'
 "Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
@@ -148,6 +150,11 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit',
   \ 'ctrl-o': ':r !echo'}
 
+" LaTeX
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_compiler_progname = 'nvr'
+let g:tex_flavor = 'latex'
+
 " TMUX
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
@@ -275,4 +282,12 @@ autocmd BufReadPre,FileReadPre  *.pi  set syntax=python
 autocmd BufReadPre,FileReadPre  *.pi  set ft=pithon
 
 " -- VimWiki --
-let g:vimwiki_list = [{}, {'name': 'phd', 'path': '~/Documents/Research/PhD/notes', 'path_html': '~/Documents/Research/PhD/notes/html'}]
+let g:vimwiki_list = [{}, { 
+      \'name': 'phd',
+      \'path': '~/Documents/Research/PhD/notes',
+      \'path_html': '~/Documents/Research/PhD/notes/html',
+      \'template_path': '~/Documents/Research/PhD/notes/templates/',
+      \}]
+
+" -- Tex --
+autocmd FileType tex set foldmethod=indent
