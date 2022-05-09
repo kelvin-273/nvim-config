@@ -24,6 +24,7 @@ Plug 'lervag/vimtex'
 "Plug 'fatih/vim-go'
 Plug 'takac/vim-hardtime'
 "Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'raimondi/delimitMate'
 Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
@@ -83,7 +84,8 @@ set secure
 filetype plugin on
 syntax on
 
-let g:python3_host_prog = '/home/kelvin/anaconda3/bin/python3'
+"let g:python3_host_prog = '/home/kelvin/anaconda3/bin/python3'
+let g:python3_host_prog = '/Users/kdav0007/opt/anaconda3/bin/python3'
 
 "source $HOME/.config/nvim/plugin-config/coc.vim
 "source $HOME/.config/nvim/plugin-config/coc-snippets.vim
@@ -284,9 +286,9 @@ autocmd BufReadPre,FileReadPre  *.pi  set ft=pithon
 " -- VimWiki --
 let g:vimwiki_list = [{}, { 
       \'name': 'phd',
-      \'path': '~/Documents/Research/PhD/notes',
-      \'path_html': '~/Documents/Research/PhD/notes/html',
-      \'template_path': '~/Documents/Research/PhD/notes/templates/',
+      \'path': '~/Documents/Research/PhD/Kelvin-s-PhD-wiki',
+      \'path_html': '~/Documents/Research/PhD/Kelvin-s-PhD-wiki/html',
+      \'template_path': '~/Documents/Research/PhD/Kelvin-s-PhD-wiki/templates/',
       \}]
 
 " -- Tex --
