@@ -6,6 +6,7 @@ nvim_lsp.rust_analyzer.setup{}
 nvim_lsp.hls.setup{}
 nvim_lsp.clangd.setup{}
 nvim_lsp.gopls.setup{}
+--nvim_lsp.pyright.setup{}
 nvim_lsp.pylsp.setup{}
 --nvim_lsp.sumneko_lua.setup{}
 nvim_lsp.texlab.setup{}
