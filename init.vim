@@ -18,7 +18,7 @@ Plug 'tpope/vim-fugitive'
 "Plug 'leafgarland/typescript-vim'
 "Plug 'quramy/tsuquyomi'
 Plug 'vale1410/vim-minizinc'
-Plug 'idris-hackers/idris-vim'
+"Plug 'idris-hackers/idris-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'lervag/vimtex'
 "Plug 'fatih/vim-go'
@@ -49,6 +49,8 @@ Plug 'nvim-treesitter/playground'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-symbols.nvim'
+" -- Harpoon
+Plug 'ThePrimeagen/harpoon'
 call plug#end()
 
 " -- My Setup --
@@ -57,9 +59,6 @@ call plug#end()
 colorscheme molokai
 "colorscheme Benokai
 "colorscheme summerfruits256
-
-" inoremap <Space><Tab> <Esc>/<++><Enter>:noh<Enter>"_c4l
-" map <Space><Tab> <Esc>/<++><Enter>:noh<Enter>"_c4l
 
 set tabstop=2
 set shiftwidth=2
@@ -84,8 +83,8 @@ set secure
 filetype plugin on
 syntax on
 
-"let g:python3_host_prog = '/home/kelvin/anaconda3/bin/python3'
-let g:python3_host_prog = '/Users/kdav0007/opt/anaconda3/bin/python3'
+let g:python3_host_prog = '/home/kelvin/anaconda3/bin/python3'
+"let g:python3_host_prog = '/Users/kdav0007/opt/anaconda3/bin/python3'
 
 "source $HOME/.config/nvim/plugin-config/coc.vim
 "source $HOME/.config/nvim/plugin-config/coc-snippets.vim
@@ -93,6 +92,10 @@ let g:ale_disable_lsp = 1
 let g:ale_linters = {'haskell': ['cabal_ghc', 'ghc-mod', 'hdevtools', 'hie', 'hlint', 'stack_build', 'stack_ghc']}
 
 source $HOME/.config/nvim/lua/lsp-config.lua
+source $HOME/.config/nvim/lua/nvim-cmp.lua
+source $HOME/.config/nvim/lua/treesitter.lua
+source $HOME/.config/nvim/lua/harpoon.lua
+
 " Code navigation shortcuts
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
@@ -112,9 +115,6 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 "let g:UltiSnipsSnippetDirectories = ['UltiSnips']
-
-source $HOME/.config/nvim/lua/nvim-cmp.lua
-source $HOME/.config/nvim/lua/treesitter.lua
 
 map <C-H> <C-W>h
 map <C-J> <C-W>j
@@ -154,8 +154,8 @@ let g:fzf_action = {
 
 " LaTeX
 let g:vimtex_view_method = 'zathura'
-let g:vimtex_compiler_progname = 'nvr'
-let g:tex_flavor = 'latex'
+let g:vimtex_compiler_progname = 'tectonic'
+let g:tex_flavor = 'xelatex'
 
 " TMUX
 let g:tmux_navigator_no_mappings = 1
@@ -284,6 +284,9 @@ autocmd BufReadPre,FileReadPre  *.pi  set syntax=python
 autocmd BufReadPre,FileReadPre  *.pi  set ft=pithon
 
 " -- VimWiki --
+autocmd FileType vimwiki noremap j gj
+autocmd FileType vimwiki noremap k gk
+
 let g:vimwiki_list = [{}, { 
       \'name': 'phd',
       \'path': '~/Documents/Research/PhD/Kelvin-s-PhD-wiki',
@@ -293,3 +296,5 @@ let g:vimwiki_list = [{}, {
 
 " -- Tex --
 autocmd FileType tex set foldmethod=indent
+autocmd FileType tex set conceallevel=2
+autocmd FileType tex hi Conceal guibg=Black

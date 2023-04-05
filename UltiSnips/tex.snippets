@@ -1,0 +1,14 @@
+snippet todo "todo"
+% TODO: ${1} `!v strftime("%Y-%m-%d")`
+endsnippet
+
+snippet /\ "AND symbol"
+\wedge
+endsnippet
+
+snippet nge "new glossary entry"
+\newglossaryentry{${1:name}}{
+	name=${2:$1},
+	description={${3:description}}
+}
+endsnippet
