@@ -9,7 +9,15 @@ nvim_lsp.clangd.setup{}
 nvim_lsp.gopls.setup{}
 --nvim_lsp.pyright.setup{}
 nvim_lsp.pylsp.setup{}
-nvim_lsp.lua_ls.setup{}
+nvim_lsp.lua_ls.setup{
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' }
+      }
+    }
+  }
+}
 nvim_lsp.texlab.setup{}
 nvim_lsp.tsserver.setup{}
 nvim_lsp.cssls.setup{ cmd = { "css-languageserver", "--stdio" } }
