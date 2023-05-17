@@ -75,6 +75,7 @@ require('packer').startup(function(_)
   }
   use 'raimondi/delimitMate'
   use 'aluriak/nerdcommenter'
+  use 'preservim/nerdtree'
 
   -- Setup Packer if just installed
   if packer_bootstrap then
