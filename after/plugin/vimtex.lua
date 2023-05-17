@@ -6,7 +6,6 @@ local is_linux = vim.fn.has("unix") == 1 and not is_mac
 if is_mac then
   vim.g.vimtex_view_method = 'skim'
 elseif is_linux then
-  print("going down this path")
   vim.g.vimtex_view_method = 'zathura'
 else
 end
