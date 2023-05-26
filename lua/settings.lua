@@ -18,6 +18,7 @@ vim.opt.compatible = false
 vim.opt.exrc = true
 vim.opt.secure = true
 vim.opt.encoding = 'utf-8'
+vim.opt.swapfile = false
 -- filetype plugin on
 
 vim.cmd('colorscheme molokai')
