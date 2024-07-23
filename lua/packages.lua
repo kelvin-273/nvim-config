@@ -43,7 +43,10 @@ require('packer').startup(function(_)
 
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { 'nvim-lua/plenary.nvim' }
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-symbols.nvim'
+    }
   }
 
   -- Snippets
@@ -62,7 +65,7 @@ require('packer').startup(function(_)
   use 'vimwiki/vimwiki'
 
   use 'ThePrimeagen/harpoon'
-  use 'junegunn/goyo.vim'
+  use 'Pocco81/true-zen.nvim'
   use 'tpope/vim-surround'
   use 'vale1410/vim-minizinc'
   use 'rust-lang/rust.vim'

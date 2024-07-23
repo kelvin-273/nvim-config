@@ -23,6 +23,7 @@ nvim_lsp.tsserver.setup{}
 nvim_lsp.cssls.setup{ cmd = { "css-languageserver", "--stdio" } }
 nvim_lsp.idris2_lsp.setup{}
 nvim_lsp.dotls.setup{}
+nvim_lsp.svelte.setup{}
 
 local configs = require('lspconfig/configs')
 
