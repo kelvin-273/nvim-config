@@ -16,54 +16,27 @@ return {
   'tpope/vim-fugitive',
   --'NeogitOrg/neogit'
   -- lsp
-  'neovim/nvim-lspconfig',
-
 
   {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-nvim-lua',
-      'quangnguyen30192/cmp-nvim-ultisnips',
-    }
-  },
-
-  'folke/neodev.nvim',
-  'onsails/lspkind-nvim',
-
-  {
-    'nvim-telescope/telescope.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' }
+    'folke/lazydev.nvim',
+    ft = { 'lua' },
+    opts = {},
   },
 
   -- Snippets
   'sirver/ultisnips',
   'honza/vim-snippets',
 
-  -- Treesitter
-  {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate'
-  },
-
-  'nvim-treesitter/playground',
-
-  'vimwiki/vimwiki',
-  'lervag/vimtex',
-  {
-    'chomosuke/typst-preview.nvim',
-    build = function() require 'typst-preview'.update() end,
-    cmd = 'TypstPreview'
-  },
-
   {
     'ThePrimeagen/harpoon',
     branch = "harpoon2",
     dependencies = { 'nvim-lua/plenary.nvim' },
+    enabled = false,
   },
-  'folke/zen-mode.nvim',
+  {
+    'folke/zen-mode.nvim',
+    cmd = 'ZenMode',
+  },
   {
     'shortcuts/no-neck-pain.nvim',
     tag = '*'
@@ -73,23 +46,16 @@ return {
   --  'vale1410/vim-minizinc',
   --  ft = { 'minizinc' }
   --},
-  'rust-lang/rust.vim',
-  'takac/vim-hardtime',
+  {
+    'takac/vim-hardtime',
+    cmd = {'HardTimeToggle', 'HardTimeOn'},
+  },
   -- 'idris-hackers/idris-vim'
   {
     'ThePrimeagen/vim-be-good',
-    build = 'install.sh'
+    build = 'install.sh',
+    cmd = 'VimBeGood',
   },
-  'raimondi/delimitMate',
   'preservim/nerdcommenter',
   'preservim/nerdtree',
-  
-  --'folke/snacks.nvim'
-  --'obsidian-nvim/obsidian.nvim'
-  --{
-  --  "epwalsh/pomo.nvim",
-  --  dependencies = {
-  --    'rcarriga/nvim-notify'
-  --  },
-  --},
 }

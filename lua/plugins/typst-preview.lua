@@ -1,0 +1,10 @@
+return {
+  'chomosuke/typst-preview.nvim',
+  build = function() require 'typst-preview'.update() end,
+  ft = { "typst" },
+  cmd = 'TypstPreview',
+  opts = {
+    --debug = true,
+  }
+}
+
