@@ -57,5 +57,4 @@ return {
     cmd = 'VimBeGood',
   },
   'preservim/nerdcommenter',
-  'preservim/nerdtree',
 }
