@@ -18,6 +18,8 @@ return {
     -- top-level picker
     { "<leader><space>", function() Snacks.picker.smart() end,   desc = "Smart Find Files" },
 
+    { "<leader>t",       function() Snacks.picker.explorer() end,  desc = "Open File Tree Tab" },
+
     -- basic “telescope-ish” bindings
     { "<leader>ff",      function() Snacks.picker.files(
       -- get the git root or fall back to cwd
@@ -27,9 +29,11 @@ return {
     { "<leader>fb",      function() Snacks.picker.buffers() end, desc = "Buffers" },
     { "<leader>fr",      function() Snacks.picker.recent() end,  desc = "Recent Files" },
     { "<leader>fh",      function() Snacks.picker.help() end,    desc = "Help Tags" },
+    { "<leader>fp",      function() Snacks.picker.projects() end, desc = "Projects" },
+    { "<leader>fc",      function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
 
     -- command history / search history, handy extras
-    { "<leader>:",       function() Snacks.picker.command_history() end, desc = "Command History" },
+    --{ "<leader>:",       function() Snacks.picker.command_history() end, desc = "Command History" },
     { "<leader>s/",      function() Snacks.picker.search_history() end,  desc = "Search History" },
   },
 }
