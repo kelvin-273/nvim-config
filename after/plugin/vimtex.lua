@@ -9,3 +9,14 @@ elseif is_linux then
   vim.g.vimtex_view_method = 'zathura'
 else
 end
+
+vim.g.vimtex_compiler_latexmk = {
+  options = {
+    '-pdf',
+    '-shell-escape',
+    '-verbose',
+    '-file-line-error',
+    '-synctex=1',
+    '-interaction=nonstopmode',
+  },
+}

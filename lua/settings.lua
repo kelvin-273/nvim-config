@@ -21,4 +21,6 @@ vim.opt.encoding = 'utf-8'
 vim.opt.swapfile = false
 -- filetype plugin on
 
-vim.cmd('colorscheme molokai')
+--vim.cmd('colorscheme molokai')
+--vim.cmd('colorscheme base16-catppuccin-latte')
+vim.cmd('colorscheme base16-catppuccin')

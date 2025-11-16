@@ -1,15 +1,13 @@
 -- Set up nvim-lsp
-
 local vim = vim
-local nvim_lsp = require('lspconfig')
 
-nvim_lsp.rust_analyzer.setup{}
-nvim_lsp.hls.setup{}
-nvim_lsp.clangd.setup{}
-nvim_lsp.gopls.setup{}
---nvim_lsp.pyright.setup{}
-nvim_lsp.pylsp.setup{}
-nvim_lsp.lua_ls.setup{
+vim.lsp.enable("rust_analyzer")
+vim.lsp.enable("hls")
+vim.lsp.enable("clangd")
+vim.lsp.enable("gopls")
+vim.lsp.enable("pylsp")
+vim.lsp.config("lua_ls", {
+  -- This might be redundant given that we still need to declare vim locally
   settings = {
     Lua = {
       diagnostics = {
@@ -17,31 +15,17 @@ nvim_lsp.lua_ls.setup{
       }
     }
   }
-}
-nvim_lsp.texlab.setup{}
-nvim_lsp.tsserver.setup{}
-nvim_lsp.cssls.setup{ cmd = { "css-languageserver", "--stdio" } }
-nvim_lsp.idris2_lsp.setup{}
-nvim_lsp.dotls.setup{}
-
-local configs = require('lspconfig/configs')
+})
+vim.lsp.enable("texlab")
+vim.lsp.enable("ts_ls")
+vim.lsp.enable("emmet_ls")
+vim.lsp.config("cssls", { cmd = { "css-languageserver", "--stdio" } })
+vim.lsp.enable("idris2_lsp")
+vim.lsp.enable("dotls")
+vim.lsp.enable("tinymist")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-if not nvim_lsp.emmet_ls then
-  configs.emmet_ls = {
-    default_config = {
-      cmd = {'emmet-ls', '--stdio'};
-      filetypes = {'html', 'css'};
-      root_dir = function(_)
-        return vim.loop.cwd()
-      end;
-      settings = {};
-    };
-  }
-end
-nvim_lsp.emmet_ls.setup{ capabilities = capabilities, on_attach=on_attach }
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -72,8 +56,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, opts)
     vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
     vim.keymap.set('n', '<leader>f', function()
       vim.lsp.buf.format { async = true }
