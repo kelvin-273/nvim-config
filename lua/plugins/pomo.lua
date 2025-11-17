@@ -3,6 +3,7 @@ return {
   --dependencies = {
   --  'rcarriga/nvim-notify'
   --},
+  lazy = true,
   opts = {
     sessions = {
       pomodoro = {
