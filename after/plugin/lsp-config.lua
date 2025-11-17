@@ -24,7 +24,6 @@ vim.lsp.enable("idris2_lsp")
 vim.lsp.enable("dotls")
 vim.lsp.enable("svelte")
 vim.lsp.enable("tinymist")
-}
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
