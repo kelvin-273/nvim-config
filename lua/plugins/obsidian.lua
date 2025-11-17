@@ -1,5 +1,6 @@
 return {
   "obsidian-nvim/obsidian.nvim",
+  lazy = true,
   version = "*", -- recommended, use latest release instead of latest commit
   --ft = "markdown",
   cmd = { "Obsidian" },
