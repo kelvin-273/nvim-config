@@ -15,8 +15,8 @@ return {
   -- vim-fugitive
   'tpope/vim-fugitive',
   --'NeogitOrg/neogit'
-  -- lsp
 
+  -- lsp
   {
     'folke/lazydev.nvim',
     ft = { 'lua' },
@@ -36,10 +36,12 @@ return {
   {
     'folke/zen-mode.nvim',
     cmd = 'ZenMode',
+    lazy = true,
   },
   {
     'shortcuts/no-neck-pain.nvim',
-    tag = '*'
+    version = '*',
+    lazy = true,
   },
   'tpope/vim-surround',
   --{
