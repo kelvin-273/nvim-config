@@ -19,6 +19,7 @@ vim.opt.exrc = true
 vim.opt.secure = true
 vim.opt.encoding = 'utf-8'
 vim.opt.swapfile = false
+vim.opt.winborder = 'rounded'
 -- filetype plugin on
 
 --vim.cmd('colorscheme molokai')
