@@ -15,6 +15,7 @@ return {
   -- vim-fugitive
   'tpope/vim-fugitive',
   --'NeogitOrg/neogit'
+  'lewis6991/gitsigns.nvim',
 
   -- lsp
   {
