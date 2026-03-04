@@ -11,11 +11,22 @@ return {
       'nvim-tree/nvim-web-devicons',
       'RRethy/nvim-base16',
       opt = true },
+    opts = {
+        options = {
+          theme = 'base16'
+        }
+      },
   },
   -- vim-fugitive
-  'tpope/vim-fugitive',
+  {
+    'tpope/vim-fugitive',
+    --cmd = { 'Git', 'G', 'Gdiffsplit', 'Gvdiffsplit', 'Gblame' }
+  },
   --'NeogitOrg/neogit'
-  'lewis6991/gitsigns.nvim',
+  {
+    'lewis6991/gitsigns.nvim',
+    event = { 'BufReadPre', 'BufNewFile' }
+  },
 
   -- lsp
   {
@@ -25,8 +36,37 @@ return {
   },
 
   -- Snippets
-  'sirver/ultisnips',
-  'honza/vim-snippets',
+  {
+    'sirver/ultisnips',
+    event = 'InsertEnter',
+  },
+  {
+    'honza/vim-snippets',
+    event = 'InsertEnter',
+  },
+  {
+    'tpope/vim-surround',
+    keys = {'cs', 'ds', 'ys'},
+  },
+  {
+    'windwp/nvim-autopairs',
+    enabled = true,
+    event = 'InsertEnter',
+    config = function()
+      local npairs = require("nvim-autopairs")
+      local Rule = require("nvim-autopairs.rule")
+      local cond = require("nvim-autopairs.conds")
+
+      npairs.setup({})
+
+      npairs.add_rules({
+        Rule("$", "$", "typst")
+          :with_pair(cond.not_after_text("$"))
+          :with_move(cond.before_text("$"))
+          :with_pair(cond.not_inside_quote())
+      })
+    end
+  },
 
   {
     'ThePrimeagen/harpoon',
@@ -44,16 +84,10 @@ return {
     version = '*',
     lazy = true,
   },
-  'tpope/vim-surround',
-  --{
-  --  'vale1410/vim-minizinc',
-  --  ft = { 'minizinc' }
-  --},
   {
     'takac/vim-hardtime',
     cmd = {'HardTimeToggle', 'HardTimeOn'},
   },
-  -- 'idris-hackers/idris-vim'
   {
     'ThePrimeagen/vim-be-good',
     build = 'install.sh',
