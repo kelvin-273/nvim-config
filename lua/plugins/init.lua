@@ -57,13 +57,26 @@ return {
       local Rule = require("nvim-autopairs.rule")
       local cond = require("nvim-autopairs.conds")
 
-      npairs.setup({})
+      npairs.setup({
+        check_ts = true,
+        enable_check_bracket_line = false,
+        fast_wrap = {
+          map = "<M-e>",
+        },
+      })
+
+      -- nvim-cmp integration
+      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+      local cmp = require("cmp")
+
+      cmp.event:on(
+        "confirm_done",
+        cmp_autopairs.on_confirm_done()
+      )
 
       npairs.add_rules({
         Rule("$", "$", "typst")
-          :with_pair(cond.not_after_text("$"))
-          :with_move(cond.before_text("$"))
-          :with_pair(cond.not_inside_quote())
+          :with_move(cond.after_text("$"))
       })
     end
   },
